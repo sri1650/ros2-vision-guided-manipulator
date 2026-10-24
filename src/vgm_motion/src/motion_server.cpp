@@ -339,13 +339,13 @@ bool MotionServer::planSequence(
       error_message = "MoveIt could not plan stage '" + target.name + "'";
       return false;
     }
-    if (plan.trajectory_.joint_trajectory.points.empty()) {
+    if (plan.trajectory.joint_trajectory.points.empty()) {
       error_message = "MoveIt returned an empty trajectory for stage '" + target.name + "'";
       return false;
     }
 
-    const auto & joint_names = plan.trajectory_.joint_trajectory.joint_names;
-    const auto & final_positions = plan.trajectory_.joint_trajectory.points.back().positions;
+    const auto & joint_names = plan.trajectory.joint_trajectory.joint_names;
+    const auto & final_positions = plan.trajectory.joint_trajectory.points.back().positions;
     if (joint_names.size() != final_positions.size()) {
       error_message = "Trajectory joint metadata is inconsistent for stage '" + target.name + "'";
       return false;
