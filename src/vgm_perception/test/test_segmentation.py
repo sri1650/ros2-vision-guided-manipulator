@@ -1,5 +1,4 @@
 import numpy as np
-
 from vgm_perception.segmentation import ColorRange, ColorSegmenter
 
 

@@ -1,6 +1,5 @@
 import numpy as np
 import pytest
-
 from vgm_perception.models import BoundingBox, CameraIntrinsics, Detection2D
 from vgm_perception.synthetic import SyntheticDetector
 

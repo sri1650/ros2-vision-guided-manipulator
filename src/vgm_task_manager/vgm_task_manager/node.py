@@ -4,6 +4,7 @@ import rclpy
 from geometry_msgs.msg import PoseStamped
 from rclpy.action import ActionClient
 from rclpy.node import Node
+
 from vgm_interfaces.action import PickPlace
 from vgm_interfaces.msg import DetectedObjectArray
 

@@ -5,7 +5,7 @@
 [![CI](https://github.com/sri1650/ros2-vision-guided-manipulator/actions/workflows/ci.yml/badge.svg)](https://github.com/sri1650/ros2-vision-guided-manipulator/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A production-style ROS 2 manipulation stack that turns RGB-D observations into collision-aware pick-and-place tasks. It combines calibrated 3D perception, explicit task orchestration, MoveIt 2 planning, conservative execution gates, Gazebo scaffolding, and automated verification.
+A production-style ROS 2 manipulation prototype that turns RGB-D observations into guarded arm-motion plans for a tabletop pick/place workflow. It combines camera-intrinsics-based 3D projection, explicit task orchestration, MoveIt 2 planning, conservative execution gates, Gazebo scaffolding, and automated verification. Gripper actuation and object attachment are integration boundaries, not completed pick-and-place behaviour.
 
 > **Validation status:** core geometry, target-selection, workspace-policy, configuration, and ROS package builds are automated. The robot, MoveIt, RGB-D, and Gazebo integrations are simulation-ready scaffolding and require end-to-end validation on Ubuntu 24.04 with ROS 2 Jazzy. No physical arm, camera, gripper, or safety system has been validated.
 
@@ -14,7 +14,7 @@ A production-style ROS 2 manipulation stack that turns RGB-D observations into c
 - RGB-D pixel-to-3D projection with robust depth sampling and covariance output
 - Pluggable perception boundary: deterministic colour segmentation today, learned detector adapter later
 - Typed ROS interfaces for detected objects and pick/place actions
-- MoveIt 2 planning service with approach, grasp, transfer, and retreat stages
+- MoveIt 2 planning service for pre-pick, pick-position, retreat, transfer, place-position, and post-place arm poses
 - Workspace, confidence, dimensions, and execution-authorisation checks before motion
 - Plan-only default so a demo cannot command hardware accidentally
 - Six-axis arm, parallel gripper, RGB-D camera, ros2_control, SRDF, and OMPL configuration
@@ -81,7 +81,7 @@ colcon test-result --verbose
 3. The task manager selects the best matching target above its confidence threshold.
 4. The motion server validates the request and computes approach/transfer plans.
 5. In plan-only mode, the action reports readiness without moving hardware.
-6. With an explicitly enabled, validated controller, the same interface can execute the trajectory.
+6. With an explicitly enabled, validated controller, the same interface can execute arm trajectories; grasp/release actuation is not implemented.
 
 The detailed walkthrough and expected topics are in [demo.md](docs/demo.md).
 

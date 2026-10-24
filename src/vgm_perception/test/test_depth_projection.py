@@ -1,6 +1,5 @@
 import numpy as np
 import pytest
-
 from vgm_perception.depth_projection import DepthProjector
 from vgm_perception.models import BoundingBox, CameraIntrinsics, Detection2D
 

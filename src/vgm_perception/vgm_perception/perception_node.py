@@ -15,6 +15,7 @@ from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import CameraInfo, Image
 from tf2_ros import Buffer, TransformException, TransformListener
+
 from vgm_interfaces.msg import DetectedObjectArray
 
 from .depth_projection import DepthProjector

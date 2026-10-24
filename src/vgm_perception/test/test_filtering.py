@@ -1,5 +1,4 @@
 import pytest
-
 from vgm_perception.filtering import TemporalPositionFilter
 from vgm_perception.models import PoseEstimate
 
