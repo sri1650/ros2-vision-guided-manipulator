@@ -1,0 +1,27 @@
+# The target pose and place pose must already be expressed in the configured
+# MoveIt planning frame. Execution is opt-in and can also be disabled server-side.
+vgm_interfaces/DetectedObject target
+geometry_msgs/PoseStamped place_pose
+bool execute
+---
+uint16 NONE=0
+uint16 INVALID_REQUEST=1
+uint16 OUTSIDE_WORKSPACE=2
+uint16 EXECUTION_DISABLED=3
+uint16 PLANNING_FAILED=4
+uint16 EXECUTION_FAILED=5
+uint16 CANCELLED=6
+bool success
+uint16 error_code
+string message
+builtin_interfaces/Duration planning_time
+---
+uint8 VALIDATING=0
+uint8 PLANNING_APPROACH=1
+uint8 PLANNING_TRANSFER=2
+uint8 READY=3
+uint8 EXECUTING=4
+uint8 COMPLETE=5
+uint8 stage
+float32 progress
+string detail

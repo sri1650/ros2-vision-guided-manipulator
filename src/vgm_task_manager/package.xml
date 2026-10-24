@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>vgm_task_manager</name>
+  <version>0.1.0</version>
+  <description>Application-level selection and orchestration for perception-driven pick-and-place tasks.</description>
+  <maintainer email="164357687+sri1650@users.noreply.github.com">Sri Charan Kumba</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>vgm_interfaces</exec_depend>
+  <test_depend>python3-pytest</test_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>
+

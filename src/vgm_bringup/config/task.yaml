@@ -1,0 +1,20 @@
+task_manager:
+  ros__parameters:
+    target_class: workpiece
+    minimum_confidence: 0.80
+    plan_only: true
+    place_frame: world
+    place_x: 0.35
+    place_y: -0.25
+    place_z: 0.78
+
+motion_server:
+  ros__parameters:
+    planning_group: manipulator
+    planning_frame: world
+    end_effector_link: tool0
+    planning_time: 5.0
+    velocity_scaling: 0.20
+    acceleration_scaling: 0.20
+    execution_enabled: false
+

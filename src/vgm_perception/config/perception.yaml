@@ -1,0 +1,44 @@
+perception_node:
+  ros__parameters:
+    topics:
+      rgb_image: /camera/color/image_raw
+      depth_image: /camera/aligned_depth_to_color/image_raw
+      camera_info: /camera/color/camera_info
+      detections: /perception/objects
+
+    # "colour" is a transparent simulation baseline; "synthetic" emits a
+    # deterministic central detection for transport/integration testing.
+    detector:
+      mode: colour
+      colour_ranges_json: >-
+        [{"label":"workpiece","hue_min":345.0,"hue_max":15.0,"saturation_min":0.45,"value_min":0.25,"min_area_px":120},
+         {"label":"blue_part","hue_min":195.0,"hue_max":245.0,"saturation_min":0.40,"value_min":0.20,"min_area_px":120}]
+      synthetic:
+        label: workpiece
+        center_x: 0.50
+        center_y: 0.50
+        width: 0.20
+        height: 0.20
+
+    depth:
+      min_m: 0.10
+      max_m: 2.00
+      roi_fraction: 0.45
+      minimum_valid_samples: 5
+      uint16_scale: 0.001
+
+    object:
+      assumed_thickness_m: 0.03
+    filter:
+      alpha: 0.45
+      max_age_s: 0.75
+    pose:
+      position_variance: 0.0004
+
+    # Empty publishes camera-optical-frame coordinates. Set e.g. "base_link"
+    # only when a calibrated camera-to-base transform is available.
+    output_frame: ""
+    transform_timeout_s: 0.05
+    synchronizer:
+      queue_size: 10
+      slop_s: 0.08

@@ -1,0 +1,14 @@
+services:
+  manipulator:
+    build: .
+    network_mode: host
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - .:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    command: bash
+    stdin_open: true
+    tty: true
+

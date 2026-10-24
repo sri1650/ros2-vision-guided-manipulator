@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pytest ruff numpy pyyaml
+      - run: ruff check src/vgm_perception src/vgm_task_manager tests
+      - run: pytest -q tests/unit
+
+  ros-build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: rostooling/setup-ros-docker:ubuntu-noble-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ros-tooling/action-ros-ci@v0.4
+        with:
+          package-name: >-
+            vgm_interfaces vgm_description vgm_moveit_config vgm_perception
+            vgm_motion vgm_task_manager vgm_bringup
+          target-ros2-distro: jazzy
+          skip-tests: false
+          colcon-defaults: |
+            {
+              "build": {"cmake-args": ["-DCMAKE_BUILD_TYPE=RelWithDebInfo"]},
+              "test": {"event-handlers": ["console_direct+"]}
+            }
+
